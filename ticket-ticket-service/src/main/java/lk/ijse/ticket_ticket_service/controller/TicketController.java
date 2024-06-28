@@ -101,4 +101,14 @@ public class TicketController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(false);
         }
     }
+
+    @GetMapping("/updateStatus/{ticket_code}")
+    public ResponseEntity<String> updateStatus(@PathVariable String ticket_code) {
+        try {
+            ticketService.updateStatus(ticket_code);
+            return ResponseEntity.status(HttpStatus.OK).body("Ticket Status Updated");
+        } catch (Exception exception) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Ticket Status Update Failed");
+        }
+    }
 }

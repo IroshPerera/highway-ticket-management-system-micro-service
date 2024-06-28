@@ -89,4 +89,14 @@ public class TicketServiceIMPL implements TicketService<TicketDTO, String> {
         }
         throw new RuntimeException("No Tickets Found..!");
     }
+
+    @Override
+    public void updateStatus(String ticketCode) {
+        TicketEntity ticketEntity = ticketRepo.findById(ticketCode).get();
+        if (ticketEntity == null) {
+            throw new RuntimeException("No Ticket Found..!");
+        }
+        ticketEntity.setStatus(Status.NOT_AVAILABLE);
+        ticketEntity.setPayementStatus(Status.PAYED);
+    }
 }

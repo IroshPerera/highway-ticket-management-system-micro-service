@@ -14,4 +14,6 @@ public interface TicketService <T,ID>{
     boolean isExist(ID id);
 
     List<T> getAll();
+
+    void updateStatus(ID ticketCode);
 }
