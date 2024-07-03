@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @Data
 public class UserDTO implements SuperDTO{
     private String user_code;
+    private String password;
     private String name;
     private String email;
     private String contact;

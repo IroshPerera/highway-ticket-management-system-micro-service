@@ -1,5 +1,6 @@
 package lk.ijse.ticket_user_service.util.map;
 
+import lk.ijse.ticket_user_service.dto.LoginDTO;
 import lk.ijse.ticket_user_service.dto.UserDTO;
 import lk.ijse.ticket_user_service.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
@@ -25,5 +26,9 @@ public class Mapper {
 
     public List<UserDTO> mapToUserDTOs(List<UserEntity> userEntities) {
         return map.map(userEntities, List.class);
+    }
+
+    public LoginDTO mapToLoginDTO(UserEntity user) {
+        return map.map(user, LoginDTO.class);
     }
 }

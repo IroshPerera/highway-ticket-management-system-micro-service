@@ -18,6 +18,7 @@ import java.util.List;
 public class UserEntity {
     @Id
     private String user_code;
+    private String password;
     private String name;
     private String email;
     private String contact;

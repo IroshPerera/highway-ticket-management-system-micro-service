@@ -1,6 +1,7 @@
 package lk.ijse.ticket_user_service.controller;
 
 
+import lk.ijse.ticket_user_service.dto.LoginDTO;
 import lk.ijse.ticket_user_service.dto.UserDTO;
 import lk.ijse.ticket_user_service.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,17 @@ public class UserController {
     public String health() {
         return "User Service is Running";
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginDTO> login(@RequestBody LoginDTO loginDTO) {
+        try {
+            LoginDTO login = userService.login(loginDTO);
+            return ResponseEntity.status(HttpStatus.OK).body(login);
+        } catch (Exception exception) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
+
 
     @PostMapping
     public ResponseEntity<String> saveUser(@RequestBody UserDTO userDTO) {

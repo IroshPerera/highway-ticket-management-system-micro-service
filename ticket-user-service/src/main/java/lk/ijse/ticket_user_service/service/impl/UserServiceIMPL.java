@@ -1,6 +1,7 @@
 package lk.ijse.ticket_user_service.service.impl;
 
 import jakarta.transaction.Transactional;
+import lk.ijse.ticket_user_service.dto.LoginDTO;
 import lk.ijse.ticket_user_service.dto.UserDTO;
 import lk.ijse.ticket_user_service.entity.UserEntity;
 import lk.ijse.ticket_user_service.repo.UserRepo;
@@ -80,5 +81,17 @@ public class UserServiceIMPL implements UserService<UserDTO, String> {
         return userRepo.existsById(user_code);
 
 
+    }
+
+    @Override
+    public LoginDTO login(LoginDTO loginDTO) {
+        Optional<UserEntity> userEntity = userRepo.findById(loginDTO.getUser_code());
+        if (userEntity.isPresent()) {
+            UserEntity user = userEntity.get();
+            if (user.getPassword().equals(loginDTO.getPassword())) {
+                return loginDTO;
+            }
+        }
+        throw new RuntimeException("Invalid User Credentials..!");
     }
 }
